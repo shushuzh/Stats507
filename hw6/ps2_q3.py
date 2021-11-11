@@ -42,7 +42,7 @@ for i in range(4):
     df_adhoc = pd.read_sas(url[i])
     df_adhoc = df_adhoc[["SEQN", "RIDAGEYR", "RIDRETH3", "DMDEDUC2","DMDMARTL", 
                          "RIDSTATR", "SDMVPSU", "SDMVSTRA", "WTMEC2YR", 
-                         "WTINT2YR"]]
+                         "WTINT2YR",'RIAGENDR']]#Add gender
     df_adhoc['cohort'] = cohort[i]
     df = pd.concat([df,df_adhoc])
 df
@@ -54,7 +54,8 @@ df = df.rename(columns = {"SEQN": "ids",
                           "RIDAGEYR": "age", 
                           "RIDRETH3": "race/ethnicity", 
                           "DMDEDUC2": "education", 
-                          "DMDMARTL": "marital_status"})
+                          "DMDMARTL": "marital_status",
+                          'RIAGENDR': 'gender'}) #Add gender
 df = df.rename(str.lower, axis='columns')
 df
 
